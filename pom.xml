@@ -11,4 +11,14 @@
         <maven.compiler.target>19</maven.compiler.target>
         <exec.mainClass>com.mycompany.notenverwaltungsprojekt_2023.Notenverwaltungsprojekt_2023</exec.mainClass>
     </properties>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/data</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 </project>
