@@ -25,8 +25,8 @@ public class SerializationUtil {
         fos.close();
     }
 
-    public static Object deserialize(String fileName) throws IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream(fileName);
+    public static Object deserialize(String path) throws IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream(path);
         ObjectInputStream ois = new ObjectInputStream(fis);
         Object obj = ois.readObject();
         ois.close();
