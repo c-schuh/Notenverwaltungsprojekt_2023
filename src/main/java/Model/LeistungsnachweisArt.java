@@ -10,6 +10,6 @@ import java.io.Serializable;
  *
  * @author drago
  */
-public record LeistungsnachweisArt(String name,int gewichtung)  {
+public record LeistungsnachweisArt(String name,NotenArt notenArt)  {
     
 }

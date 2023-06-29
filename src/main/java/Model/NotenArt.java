@@ -12,4 +12,5 @@ import java.io.Serializable;
  */
 public record NotenArt(String name, int gewichtung)  {
     
+  
 }
