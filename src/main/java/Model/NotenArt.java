@@ -4,10 +4,13 @@
  */
 package Model;
 
+import java.io.Serializable;
+
 /**
  *
- * @author Voxiell
+ * @author drago
  */
-public class Model {
+public record NotenArt(String name, int gewichtung)  {
     
+  
 }
