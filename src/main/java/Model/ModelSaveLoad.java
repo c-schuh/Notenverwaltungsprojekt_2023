@@ -13,8 +13,8 @@ import java.io.IOException;
  */
 public class ModelSaveLoad {
 
-    public static Leistungsnachweis ladeLeistungsabschnitt(String fileName) throws IOException, ClassNotFoundException{
-       return SerializationUtil.deserialize("./src/data/Leistungsabschnitte/" + fileName);
+    public static Leistungsabschnitt ladeLeistungsabschnitt(String fileName) throws IOException, ClassNotFoundException{
+       return (Leistungsabschnitt)SerializationUtil.deserialize("./src/data/Leistungsabschnitte/" + fileName);
     }
 
     public static String[] getLeistungsabschnittFileNamen() {
