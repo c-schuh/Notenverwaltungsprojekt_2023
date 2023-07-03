@@ -10,23 +10,35 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.UUID;
+
 
 /**
  *
  * @author Voxiell
  */
 public class SerializationUtil {
-
-    public static void serialize(Object obj, String path) throws IOException {
-        FileOutputStream fos = new FileOutputStream(new File(path));
+    /**
+     * 
+     * @param obj Objekt das serialisiert werden soll
+     * @param filePath Path der Datei in der obj gepseichert werden soll
+     * @throws IOException Datei existiert nicht
+     */
+    public static void serialize(Object obj, String filePath) throws IOException {
+        FileOutputStream fos = new FileOutputStream(new File(filePath));
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(obj);
         fos.close();
     }
-
-    public static Object deserialize(String path) throws IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream(path);
+    
+    /**
+     * 
+     * @param filePath Path der Datei die deserialisiert werden soll
+     * @return deserialisiertes Objekt
+     * @throws IOException Datei existiert nicht
+     * @throws ClassNotFoundException 
+     */
+    public static Object deserialize(String filePath) throws IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream(filePath);
         ObjectInputStream ois = new ObjectInputStream(fis);
         Object obj = ois.readObject();
         ois.close();
