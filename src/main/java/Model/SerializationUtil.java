@@ -13,7 +13,8 @@ import java.io.ObjectOutputStream;
 
 
 /**
- *
+ * Hilfsklasse die den Vorgang von Serialisation/Deserialisation übernimmt
+ * 
  * @author Voxiell
  */
 public class SerializationUtil {

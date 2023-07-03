@@ -10,11 +10,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Hilfsklasse, die das Laden und Speichern von Leistungsabschnitten übernimmt
  * @author Voxiell
  */
 public class ModelSaveLoad {
-
+    //Path für das File directory für die Speicherung
     private final static String PATH ="./src/data/Leistungsabschnitte/";
     /**
      * deserialisere das searialisierte Leistungsabschnnitt-objekt "fileName" und gib es zurück

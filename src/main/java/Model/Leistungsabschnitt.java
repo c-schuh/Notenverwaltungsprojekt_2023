@@ -4,16 +4,17 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author drago
  */
-public class Leistungsabschnitt {
+public class Leistungsabschnitt implements Serializable {
     
-    String name;
-    ArrayList<Fach> fächer = new ArrayList();
+    private String name;
+    private ArrayList<Fach> fächer = new ArrayList();
 
 
     public Leistungsabschnitt(String name) {
