@@ -14,18 +14,21 @@ import java.util.logging.Logger;
  * @author Voxiell
  */
 public class ModelSaveLoad {
-    //Path für das File directory für die Speicherung
-    private final static String PATH ="./src/data/Leistungsabschnitte/";
+    //Path für das File directory für die Speicherung der Leistungsabschnitte
+    private final static String PATH_LEISTUNGSABSCHNITTE ="./src/data/Leistungsabschnitte/";
+    
+    //Path für das File directory für die Speicherung der Config
+    private final static String PATH_CONFIG = "./src/data";
     /**
      * deserialisere das searialisierte Leistungsabschnnitt-objekt "fileName" und gib es zurück
      * 
-     * @param fileName Der Name der serialisierten Leistungsabschnitt Datei
-     * @return Das deserialisierte Leistungsabschnitt-Objekt
+     * @param fileName Name der serialisierten Leistungsabschnitt Datei
+     * @return deserialisiertes Leistungsabschnitt-Objekt
      * @throws IOException Datei exisitiert nicht
      * @throws ClassNotFoundException 
      */
     public static Leistungsabschnitt ladeLeistungsabschnitt(String fileName) throws IOException, ClassNotFoundException{
-       return (Leistungsabschnitt)SerializationUtil.deserialize(PATH + fileName);
+       return (Leistungsabschnitt)SerializationUtil.deserialize(PATH_LEISTUNGSABSCHNITTE + fileName);
     }
     /**
      * gebe alle Namen der Dateien im Leistungsabschnitt-directory zurück
@@ -33,7 +36,7 @@ public class ModelSaveLoad {
      * @return Alle Dateinamen im Speicherdirectory in einem Array
      */
     public static String[] getLeistungsabschnittFileNamen() {
-        File[] files = new File(PATH).listFiles();
+        File[] files = new File(PATH_LEISTUNGSABSCHNITTE).listFiles();
         String[] ergebnisse = new String[files.length];
 
         for (int i = 0; i < files.length; i++) {
@@ -46,12 +49,34 @@ public class ModelSaveLoad {
     /**
      * serialisiere das Leistungsabschnitt-Objekt toSave und speichere dieses als Datei mit dem Namen des Leistungsabschnitts
      * 
-     * @param toSave Das Leistungsabschnitt-Objekt das gepsiechert werden soll
+     * @param toSave Leistungsabschnitt-Objekt das gepsiechert werden soll
      */
     public static void speicherLeistungsabschnitt(Leistungsabschnitt toSave){
         String fileName = toSave.getName() + ".ser";
         try {
-            SerializationUtil.serialize(toSave, PATH + fileName);
+            SerializationUtil.serialize(toSave, PATH_LEISTUNGSABSCHNITTE + fileName);
+        } catch (IOException ex) {
+            Logger.getLogger(ModelSaveLoad.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    /**
+     * 
+     * @return deserialisiertes Config-Objekt
+     * @throws ClassNotFoundException
+     * @throws IOException Datei konnte nicht gefunden werden
+     */
+    public static Config ladeConfig() throws ClassNotFoundException, IOException{
+        return (Config) SerializationUtil.deserialize(PATH_CONFIG + "config.ser");
+    }
+    
+    /**
+     * 
+     * @param toSave Config-Objekt das gespeichert werden soll 
+     */
+    public static void speicherConfig(Config toSave){
+        try {
+            SerializationUtil.serialize(toSave, PATH_CONFIG + "config.ser");
         } catch (IOException ex) {
             Logger.getLogger(ModelSaveLoad.class.getName()).log(Level.SEVERE, null, ex);
         }
