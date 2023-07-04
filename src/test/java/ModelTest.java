@@ -27,6 +27,7 @@ public class ModelTest {
         for (int i = 0; i < 10; i++) {
            Fach toAdd = new Fach("fach" + i);
            toAdd.addNote(new NotenElement(15, c.notenArten().get(0), c.leistungsnachweisArten().get(0), new Date(1, 1, 2023), "test"));
+           l.addFach(toAdd);
         }
         
         ModelSaveLoad.speicherConfig(c);

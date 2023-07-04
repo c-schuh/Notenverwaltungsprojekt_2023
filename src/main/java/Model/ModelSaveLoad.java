@@ -18,7 +18,7 @@ public class ModelSaveLoad {
     private final static String PATH_LEISTUNGSABSCHNITTE ="./src/data/Leistungsabschnitte/";
     
     //Path für das File directory für die Speicherung der Config
-    private final static String PATH_CONFIG = "./src/data";
+    private final static String PATH_CONFIG = "./src/data/";
     /**
      * deserialisere das searialisierte Leistungsabschnnitt-objekt "fileName" und gib es zurück
      * 
