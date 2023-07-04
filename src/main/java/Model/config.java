@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author drago
  */
-public record config(ArrayList<LeistungsnachweisArt> leistungsnachweisArten, ArrayList<NotenArt> notenArten, ArrayList<Integer> notenWerte)implements Serializable {
+public record Config(ArrayList<LeistungsnachweisArt> leistungsnachweisArten, ArrayList<NotenArt> notenArten, ArrayList<Integer> notenWerte)implements Serializable {
 
     public void addLeistungsnachweisArt(String name, NotenArt notenArt) {
         leistungsnachweisArten.add(new LeistungsnachweisArt(name, notenArt));
