@@ -29,6 +29,8 @@ public record Config(ArrayList<LeistungsnachweisArt> leistungsnachweisArten, Arr
     }
 
     public void setNotenWerte(int best, int worst) {
+        notenWerte.clear();
+        
         boolean aufsteigend;
         if (best > worst) {
             aufsteigend = true;
