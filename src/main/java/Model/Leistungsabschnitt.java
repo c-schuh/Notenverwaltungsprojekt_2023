@@ -43,5 +43,13 @@ public class Leistungsabschnitt implements Serializable {
         this.fächer = fächer;
     }
     
+    public void addFach(Fach toAdd){
+        fächer.add(toAdd);
+    }
+    
+    public void removeFach(Fach toRemove){
+        fächer.remove(toRemove);
+    }
+    
     
 }
