@@ -4,13 +4,14 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author drago
  */
-public record NotenElement(int note,NotenArt notenArt,LeistungsnachweisArt leistungsnachweisArt,Date datum,String beschreibung) {
+public record NotenElement(int note,NotenArt notenArt,LeistungsnachweisArt leistungsnachweisArt,Date datum,String beschreibung) implements Serializable {
     
    
 

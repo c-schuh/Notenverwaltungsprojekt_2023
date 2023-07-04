@@ -10,7 +10,7 @@ import java.io.Serializable;
  *
  * @author drago
  */
-public record NotenArt(String name, int gewichtung)  {
+public record NotenArt(String name, int gewichtung) implements Serializable {
     
   
 }

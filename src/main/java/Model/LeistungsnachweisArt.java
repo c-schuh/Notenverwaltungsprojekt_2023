@@ -10,6 +10,6 @@ import java.io.Serializable;
  *
  * @author drago
  */
-public record LeistungsnachweisArt(String name,NotenArt notenArt)  {
+public record LeistungsnachweisArt(String name,NotenArt notenArt) implements Serializable {
     
 }

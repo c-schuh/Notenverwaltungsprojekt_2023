@@ -4,13 +4,14 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author drago
  */
-public class Fach {
+public class Fach implements Serializable {
     
    private ArrayList<NotenElement> noten = new ArrayList<NotenElement>();
    private String name; 

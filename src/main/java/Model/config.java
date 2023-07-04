@@ -3,14 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Model;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author drago
  */
-public record config(ArrayList<LeistungsnachweisArt> leistungsnachweisArten, ArrayList<NotenArt> notenArten, ArrayList<Integer> notenWerte) {
+public record Config(ArrayList<LeistungsnachweisArt> leistungsnachweisArten, ArrayList<NotenArt> notenArten, ArrayList<Integer> notenWerte)implements Serializable {
 
     public void addLeistungsnachweisArt(String name, NotenArt notenArt) {
         leistungsnachweisArten.add(new LeistungsnachweisArt(name, notenArt));
