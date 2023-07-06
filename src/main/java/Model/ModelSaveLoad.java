@@ -15,10 +15,10 @@ import java.util.logging.Logger;
  */
 public class ModelSaveLoad {
     //Path für das File directory für die Speicherung der Leistungsabschnitte
-    private final static String PATH_LEISTUNGSABSCHNITTE ="./src/data/Leistungsabschnitte/";
+    public final static String PATH_LEISTUNGSABSCHNITTE ="./src/data/Leistungsabschnitte/";
     
     //Path für das File directory für die Speicherung der Config
-    private final static String PATH_CONFIG = "./src/data/";
+    public final static String PATH_CONFIG = "./src/data/";
     /**
      * deserialisere das searialisierte Leistungsabschnnitt-objekt "fileName" und gib es zurück
      * 

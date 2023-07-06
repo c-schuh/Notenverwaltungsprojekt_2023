@@ -6,6 +6,7 @@ package Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -44,5 +45,22 @@ public class Fach implements Serializable {
     public void removeNote (NotenElement toRemove)
     {
         noten.remove(toRemove);
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+         // self check
+    if (this == obj)
+        return true;
+    // null check
+    if (obj == null)
+        return false;
+    // type check and cast
+    if (getClass() != obj.getClass())
+        return false;
+    Fach f = (Fach) obj;
+    // field comparison
+    return Objects.equals(name, f.name)
+            && Objects.equals(noten, f.noten);
     }
 }
