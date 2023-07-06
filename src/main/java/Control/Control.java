@@ -10,4 +10,8 @@ package Control;
  */
 public class Control {
     
+   public void startup () {
+       
+   }
+    
 }
