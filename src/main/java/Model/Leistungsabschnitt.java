@@ -6,6 +6,7 @@ package Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -51,5 +52,20 @@ public class Leistungsabschnitt implements Serializable {
         fächer.remove(toRemove);
     }
     
-    
+    @Override
+    public boolean equals(Object obj){
+         // self check
+    if (this == obj)
+        return true;
+    // null check
+    if (obj == null)
+        return false;
+    // type check and cast
+    if (getClass() != obj.getClass())
+        return false;
+    Leistungsabschnitt l = (Leistungsabschnitt) obj;
+    // field comparison
+    return Objects.equals(name, l.name)
+            && Objects.equals(fächer, l.fächer);
+    }
 }
