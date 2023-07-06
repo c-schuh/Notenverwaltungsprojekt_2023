@@ -18,6 +18,7 @@ public class ModelTest {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        //erstellen von test objekten
         Config c = new Config(new ArrayList<LeistungsnachweisArt>(), new ArrayList<NotenArt>(), new ArrayList<Integer>());
         c.setNotenWerte(15, 0);
         c.addNotenArt("mündlich", 1);
@@ -30,10 +31,13 @@ public class ModelTest {
            l.addFach(toAdd);
         }
         
+        //serialisierung der test objekte
         ModelSaveLoad.speicherConfig(c);
         ModelSaveLoad.speicherLeistungsabschnitt(l);
         Config c2 = null;
         Leistungsabschnitt l2 = null;
+        
+        //deserialisieren der test-Objekte und speicherung in l2 und c2
         try {
             c2 = ModelSaveLoad.ladeConfig();
         } catch (ClassNotFoundException | IOException ex) {
@@ -46,6 +50,7 @@ public class ModelTest {
             System.out.println("Leistungsabschnitt save fail");
         }
         
+        //vergleichen der orginalen test-Objekte mit deserialiserten test-Objekten
         System.out.println("Config is same: " + c.equals(c2));
         System.out.println("Leistungsabschnitt is same: " + l.equals(l2));
         
