@@ -7,10 +7,10 @@ package Model;
 import java.io.Serializable;
 
 /**
+ * Notenart mit Name und Gewichtung
  *
  * @author drago
  */
 public record NotenArt(String name, int gewichtung) implements Serializable {
-    
-  
+
 }
