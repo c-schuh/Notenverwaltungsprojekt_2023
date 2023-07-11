@@ -9,8 +9,8 @@ import Model.Fach;
 import Model.ModelSaveLoad;
 import Model.Leistungsabschnitt;
 import Model.LeistungsnachweisArt;
-import Model.NotenArt;
 import Model.NotenElement;
+import Model.StandardSetup;
 import java.util.Date;
 
 
@@ -24,13 +24,14 @@ public class Control {
 
     // Startup Initialisiert das Programm mit Model und View. Mach des Sinn?
    public void startup () {
-      View View1=new View(this);
+     View view1=new View(this);
       //Model Model1 = new Model();
       //View1.setModel(Model1);
       //aktuellen Leistungsabschnitt festlegen:
       if (ModelSaveLoad.getLeistungsabschnittFileNamen().length==0){
           //sage Gui Leistungsabschnitt erstellen
           // else Zeige GUI verfügbare Leistungsabschnitte und lasse wählen
+          leistungsabschnittakt=StandardSetup.leistungsabschnittSetup();
       }
    }
    
@@ -60,6 +61,9 @@ public class Control {
        return true;
    }
    
+   public void prüfeEingabe(){
+       
+   }
    
        
     
