@@ -61,8 +61,32 @@ public class Control {
        return true;
    }
    
-   public void prüfeEingabe(){
+   // löscht Leistungsabschnitt
+   public boolean LeistungsabschnittLoeschen (Leistungsabschnitt zuloeschen){
+       ModelSaveLoad.speicherLeistungsabschnitt(null);
+       return true;
        
+   }
+   
+   //löscht Fach
+   public boolean Fachloeschen (Fach zuloeschen){
+       leistungsabschnittakt.removeFach(zuloeschen);
+       ModelSaveLoad.speicherLeistungsabschnitt(leistungsabschnittakt);
+       return true;
+   }
+   
+   //löscht Fach
+   public boolean Noteloeschen (int gewFachIndex, NotenElement zuloeschen){
+       leistungsabschnittakt.getFächer().get(gewFachIndex).removeNote(zuloeschen);    
+       ModelSaveLoad.speicherLeistungsabschnitt(leistungsabschnittakt);
+       return true;
+
+   }
+   
+   public 
+   
+   public void prüfeEingabe(){
+       // evtl. über View
    }
    
        
