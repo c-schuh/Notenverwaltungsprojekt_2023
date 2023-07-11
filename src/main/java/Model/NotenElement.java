@@ -8,14 +8,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
+ * Notenelement mit Note, Notenart, Leistungsnachweisart, Datum und Beschreibung
  *
  * @author drago
  */
-public record NotenElement(int note,NotenArt notenArt,LeistungsnachweisArt leistungsnachweisArt,Date datum,String beschreibung) implements Serializable {
-    
-   
+public record NotenElement(int note, NotenArt notenArt, LeistungsnachweisArt leistungsnachweisArt, Date datum, String beschreibung) implements Serializable {
 
-   
-    
-    
 }

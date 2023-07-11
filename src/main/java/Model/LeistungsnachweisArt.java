@@ -7,9 +7,10 @@ package Model;
 import java.io.Serializable;
 
 /**
+ * Leistungsnachweisart mit Name und Notenart
  *
  * @author drago
  */
-public record LeistungsnachweisArt(String name,NotenArt notenArt) implements Serializable {
-    
+public record LeistungsnachweisArt(String name, NotenArt notenArt) implements Serializable {
+
 }
