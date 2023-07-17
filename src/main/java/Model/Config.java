@@ -77,3 +77,4 @@ public record Config(ArrayList<LeistungsnachweisArt> leistungsnachweisArten, Arr
         }
     }
 }
+

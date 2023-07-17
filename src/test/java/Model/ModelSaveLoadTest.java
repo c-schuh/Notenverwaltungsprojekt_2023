@@ -2,12 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
+package Model;
 
-import Model.Config;
-import Model.Fach;
-import Model.Leistungsabschnitt;
-import Model.ModelSaveLoad;
-import Model.NotenElement;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,9 +15,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author Voxiell
+ * @author Voxel
  */
-public class ModelTest {
+public class ModelSaveLoadTest {
 
     static Config c;
     static Leistungsabschnitt l;
@@ -65,14 +61,29 @@ public class ModelTest {
     @Test
     public void serialisationConfig() throws ClassNotFoundException, IOException {
         ModelSaveLoad.speicherConfig(c);
-        Config c2 = ModelSaveLoad.ladeConfig();
-        assertEquals(c, c2);
+        Config c_deserialized = ModelSaveLoad.ladeConfig();
+        assertEquals(c, c_deserialized);
     }
 
     @Test
     public void serialisationLeistungsabschnitt() throws ClassNotFoundException, IOException {
         ModelSaveLoad.speicherLeistungsabschnitt(l);
-        Leistungsabschnitt l2 = ModelSaveLoad.ladeLeistungsabschnitt(ModelSaveLoad.getLeistungsabschnittFileNamen()[0]);
-        assertEquals(l, l2);
+        Leistungsabschnitt l_deserialized = ModelSaveLoad.ladeLeistungsabschnitt(ModelSaveLoad.getLeistungsabschnittFileNamen()[0]);
+        assertEquals(l, l_deserialized);
+    }
+    
+    @Test
+    public void overwrite() throws IOException, ClassNotFoundException{
+        //speicher Leistungsabschnitt in eine Variable nach serialisations-prozess
+        ModelSaveLoad.speicherLeistungsabschnitt(l);
+        Leistungsabschnitt l_deserialized = ModelSaveLoad.ladeLeistungsabschnitt(ModelSaveLoad.getLeistungsabschnittFileNamen()[0]);
+        //verändere Leistungsabschnitt und speicher ihn in eine andere Variable nach serialisations-prozess
+        l.addFach(new Fach("änderung"));
+        ModelSaveLoad.speicherLeistungsabschnitt(l);
+        Leistungsabschnitt l_changed_deserialized = ModelSaveLoad.ladeLeistungsabschnitt(ModelSaveLoad.getLeistungsabschnittFileNamen()[0]);
+        //vergleiche die beiden gespeicherten Objekte, Erwartung: Änderung wurde gespeichert(überschrieben)
+        assertFalse(l_deserialized.equals(l_changed_deserialized));
     }
 }
+
+
