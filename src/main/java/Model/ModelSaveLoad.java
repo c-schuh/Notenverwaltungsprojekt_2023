@@ -81,4 +81,9 @@ public class ModelSaveLoad {
             Logger.getLogger(ModelSaveLoad.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static void löscheLeistungsabschnitt(String fileName){
+        File toDelete = new File(PATH_LEISTUNGSABSCHNITTE + fileName);
+        toDelete.delete();
+    }
 }
