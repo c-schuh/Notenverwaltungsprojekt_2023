@@ -5,7 +5,9 @@
 package Model;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
+import static java.util.Locale.filter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,7 +38,9 @@ public class ModelSaveLoad {
      * @return Alle Dateinamen im Speicherdirectory in einem Array
      */
     public static String[] getLeistungsabschnittFileNamen() {
-        File[] files = new File(PATH_LEISTUNGSABSCHNITTE).listFiles();
+        FilenameFilter readmeFilter = (File dir, String name) -> !name.toLowerCase().endsWith(".md");
+        
+        File[] files = new File(PATH_LEISTUNGSABSCHNITTE).listFiles(readmeFilter);
         String[] ergebnisse = new String[files.length];
 
         for (int i = 0; i < files.length; i++) {
@@ -81,7 +85,10 @@ public class ModelSaveLoad {
             Logger.getLogger(ModelSaveLoad.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    /**
+     * löscht eine Leistungsabschnitt Datei
+     * @param fileName Dateiname der Datei die gelöscht werden soll
+     */
     public static void löscheLeistungsabschnitt(String fileName){
         File toDelete = new File(PATH_LEISTUNGSABSCHNITTE + fileName);
         toDelete.delete();
