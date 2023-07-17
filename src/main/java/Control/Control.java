@@ -12,7 +12,7 @@ import Model.LeistungsnachweisArt;
 import Model.NotenElement;
 import Model.StandardSetup;
 import java.util.Date;
-
+import View.Halbjahr;
 
 /**
  *
@@ -22,13 +22,14 @@ public class Control {
     
     public Leistungsabschnitt leistungsabschnittakt;
 
-    // Startup Initialisiert das Programm mit Model und View. Mach des Sinn?
-   public void startup () {
-     View view1=new View(this);
-      //Model Model1 = new Model();
-      //View1.setModel(Model1);
+    /**
+     * MVC-Control Klasse: Konstroktor initialisiert View und Model
+     */
+   public Control () {
+     View view1=new Halbjahr(this); //Kon struktor der Klasse Halbjahr hat keine Variable für die Control, welches ist der Startbildschirm?
       //aktuellen Leistungsabschnitt festlegen:
       if (ModelSaveLoad.getLeistungsabschnittFileNamen().length==0){
+          
           //sage Gui Leistungsabschnitt erstellen
           // else Zeige GUI verfügbare Leistungsabschnitte und lasse wählen
           leistungsabschnittakt=StandardSetup.leistungsabschnittSetup();
@@ -36,54 +37,46 @@ public class Control {
    }
    
    //fügt neuen Leistungsabschnitt hinzu // Verwaltung des Leistungsabschnittes?
-   public boolean Leistungsabschnitthinzufügen (String name){
+   public void Leistungsabschnitthinzufügen (String name){
        leistungsabschnittakt = new Leistungsabschnitt(name);
        ModelSaveLoad.speicherLeistungsabschnitt(leistungsabschnittakt);
-       return true;
        
    }
    
    //fügt Fach zu Leistungsabschnitt hinzu
-   public boolean Fachhinzufügen (String name){
+   public void Fachhinzufügen (String name){
       leistungsabschnittakt.addFach(new Fach(name));
       ModelSaveLoad.speicherLeistungsabschnitt(leistungsabschnittakt);
-      return true;
    }
    
    
    //Fügt Note zu gewähltem Fach im aktuellen Leistungsabschnitt hinzu
-   public boolean Notehinzufügen (int gewFachIndex, int note, LeistungsnachweisArt leistungsnachweisArt, Date datum, String beschreibung){
+   public void Notehinzufügen (int gewFachIndex, int note, LeistungsnachweisArt leistungsnachweisArt, Date datum, String beschreibung){
        //leistungsabschnittakt.Fächer[Fach]();
        
        leistungsabschnittakt.getFächer().get(gewFachIndex).addNote(new NotenElement(note,leistungsnachweisArt.notenArt(),leistungsnachweisArt,datum,beschreibung));
        //Fächer an die View übergeben oder direkt vom Model (vorher), View Liefert gewähltes Fach und Andere Daten, control setzt sie ein
        ModelSaveLoad.speicherLeistungsabschnitt(leistungsabschnittakt);
-       return true;
    }
    
    // löscht Leistungsabschnitt
-   public boolean LeistungsabschnittLoeschen (Leistungsabschnitt zuloeschen){
+   public void LeistungsabschnittLoeschen (Leistungsabschnitt zuloeschen){
        ModelSaveLoad.speicherLeistungsabschnitt(null);
-       return true;
        
    }
    
    //löscht Fach
-   public boolean Fachloeschen (Fach zuloeschen){
+   public void Fachloeschen (Fach zuloeschen){
        leistungsabschnittakt.removeFach(zuloeschen);
        ModelSaveLoad.speicherLeistungsabschnitt(leistungsabschnittakt);
-       return true;
    }
    
    //löscht Fach
-   public boolean Noteloeschen (int gewFachIndex, NotenElement zuloeschen){
+   public void Noteloeschen (int gewFachIndex, NotenElement zuloeschen){
        leistungsabschnittakt.getFächer().get(gewFachIndex).removeNote(zuloeschen);    
        ModelSaveLoad.speicherLeistungsabschnitt(leistungsabschnittakt);
-       return true;
-
    }
    
-   public 
    
    public void prüfeEingabe(){
        // evtl. über View
