@@ -61,8 +61,7 @@ public class Control {
    
    // löscht Leistungsabschnitt
    public void LeistungsabschnittLoeschen (Leistungsabschnitt zuloeschen){
-       ModelSaveLoad.speicherLeistungsabschnitt(null);
-       
+// Löschen-Methode im Model, oder Control?       
    }
    
    //löscht Fach
@@ -77,6 +76,14 @@ public class Control {
        ModelSaveLoad.speicherLeistungsabschnitt(leistungsabschnittakt);
    }
    
+   //löscht alte Version der Note und erstellt neue
+   public void Notebearbeiten(int gewFachIndex, NotenElement zubearbeiten, int note, LeistungsnachweisArt leistungsnachweisArt, Date datum, String beschreibung) {
+       Noteloeschen (gewFachIndex, zubearbeiten);
+       Notehinzufügen (gewFachIndex, note, leistungsnachweisArt, datum, beschreibung);
+       ModelSaveLoad.speicherLeistungsabschnitt(leistungsabschnittakt);
+   }
+   
+   // Methoden um bestehende Informationen(Noten) aus dem Model abzurufen im Controller oder in der View?
    
    public void prüfeEingabe(){
        // evtl. über View
