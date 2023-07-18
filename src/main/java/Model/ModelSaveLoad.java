@@ -7,7 +7,6 @@ package Model;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import static java.util.Locale.filter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,9 +37,9 @@ public class ModelSaveLoad {
      * @return Alle Dateinamen im Speicherdirectory in einem Array
      */
     public static String[] getLeistungsabschnittFileNamen() {
-        FilenameFilter readmeFilter = (File dir, String name) -> !name.toLowerCase().endsWith(".md");
+        FilenameFilter serializedFilesFilter = (File dir, String name) -> name.toLowerCase().endsWith(".ser");
         
-        File[] files = new File(PATH_LEISTUNGSABSCHNITTE).listFiles(readmeFilter);
+        File[] files = new File(PATH_LEISTUNGSABSCHNITTE).listFiles(serializedFilesFilter);
         String[] ergebnisse = new String[files.length];
 
         for (int i = 0; i < files.length; i++) {
@@ -56,7 +55,7 @@ public class ModelSaveLoad {
      * @param toSave Leistungsabschnitt-Objekt das gepsiechert werden soll
      */
     public static void speicherLeistungsabschnitt(Leistungsabschnitt toSave){
-        String fileName = toSave.getName() + ".ser";
+        String fileName = toSave.getName().replaceAll("[/./\\:*?\"<>|]", "_") + ".ser";
         try {
             SerializationUtil.serialize(toSave, PATH_LEISTUNGSABSCHNITTE + fileName);
         } catch (IOException ex) {
