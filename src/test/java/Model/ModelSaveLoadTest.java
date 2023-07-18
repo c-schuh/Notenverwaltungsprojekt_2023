@@ -31,7 +31,7 @@ public class ModelSaveLoadTest {
         c.addNotenArt("mündlich", 1);
         c.addLeistungsnachweisArt("Abfrage", c.notenArten().get(0));
 
-        l = new Leistungsabschnitt("Q11_1");
+        l = new Leistungsabschnitt("Q11/1");
         for (int i = 0; i < 10; i++) {
             Fach toAdd = new Fach("fach" + i);
             toAdd.addNote(new NotenElement(15, c.notenArten().get(0), c.leistungsnachweisArten().get(0), new Date(1, 1, 2023), "test"));
