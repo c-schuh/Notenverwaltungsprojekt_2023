@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,7 +31,7 @@ public class ModelSaveLoadTest {
         c.addNotenArt("mündlich", 1);
         c.addLeistungsnachweisArt("Abfrage", c.notenArten().get(0));
 
-        l = new Leistungsabschnitt("Q11_1");
+        l = new Leistungsabschnitt("Q11/1");
         for (int i = 0; i < 10; i++) {
             Fach toAdd = new Fach("fach" + i);
             toAdd.addNote(new NotenElement(15, c.notenArten().get(0), c.leistungsnachweisArten().get(0), new Date(1, 1, 2023), "test"));
@@ -42,7 +43,10 @@ public class ModelSaveLoadTest {
     public static void tearDownClass() {
         l = null;
         c = null;
-        
+    }
+    
+    @AfterEach
+    public void clearDirectory(){
         File configDirectory = new File(ModelSaveLoad.PATH_CONFIG);
         for (File file : configDirectory.listFiles()) {
            if(!file.getName().equalsIgnoreCase("README.md")){
@@ -83,6 +87,13 @@ public class ModelSaveLoadTest {
         Leistungsabschnitt l_changed_deserialized = ModelSaveLoad.ladeLeistungsabschnitt(ModelSaveLoad.getLeistungsabschnittFileNamen()[0]);
         //vergleiche die beiden gespeicherten Objekte, Erwartung: Änderung wurde gespeichert(überschrieben)
         assertFalse(l_deserialized.equals(l_changed_deserialized));
+    }
+    
+    @Test
+    public void delete(){
+        ModelSaveLoad.speicherLeistungsabschnitt(l);
+        ModelSaveLoad.löscheLeistungsabschnitt(ModelSaveLoad.getLeistungsabschnittFileNamen()[0]);
+        assertEquals(0, ModelSaveLoad.getLeistungsabschnittFileNamen().length);
     }
 }
 

@@ -5,6 +5,7 @@
 package Model;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,7 +37,9 @@ public class ModelSaveLoad {
      * @return Alle Dateinamen im Speicherdirectory in einem Array
      */
     public static String[] getLeistungsabschnittFileNamen() {
-        File[] files = new File(PATH_LEISTUNGSABSCHNITTE).listFiles();
+        FilenameFilter serializedFilesFilter = (File dir, String name) -> name.toLowerCase().endsWith(".ser");
+        
+        File[] files = new File(PATH_LEISTUNGSABSCHNITTE).listFiles(serializedFilesFilter);
         String[] ergebnisse = new String[files.length];
 
         for (int i = 0; i < files.length; i++) {
@@ -52,7 +55,7 @@ public class ModelSaveLoad {
      * @param toSave Leistungsabschnitt-Objekt das gepsiechert werden soll
      */
     public static void speicherLeistungsabschnitt(Leistungsabschnitt toSave){
-        String fileName = toSave.getName() + ".ser";
+        String fileName = toSave.getName().replaceAll("[/./\\:*?\"<>|]", "_") + ".ser";
         try {
             SerializationUtil.serialize(toSave, PATH_LEISTUNGSABSCHNITTE + fileName);
         } catch (IOException ex) {
@@ -80,5 +83,13 @@ public class ModelSaveLoad {
         } catch (IOException ex) {
             Logger.getLogger(ModelSaveLoad.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    /**
+     * löscht eine Leistungsabschnitt Datei
+     * @param fileName Dateiname der Datei die gelöscht werden soll
+     */
+    public static void löscheLeistungsabschnitt(String fileName){
+        File toDelete = new File(PATH_LEISTUNGSABSCHNITTE + fileName);
+        toDelete.delete();
     }
 }
