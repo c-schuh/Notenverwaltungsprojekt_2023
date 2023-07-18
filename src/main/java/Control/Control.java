@@ -9,6 +9,7 @@ import Model.Fach;
 import Model.ModelSaveLoad;
 import Model.Leistungsabschnitt;
 import Model.LeistungsnachweisArt;
+import static Model.ModelSaveLoad.löscheLeistungsabschnitt;
 import Model.NotenElement;
 import Model.StandardSetup;
 import java.util.Date;
@@ -20,6 +21,9 @@ import View.Halbjahr;
  */
 public class Control { 
     
+    /**
+     *
+     */
     public Leistungsabschnitt leistungsabschnittakt;
 
     /**
@@ -36,21 +40,41 @@ public class Control {
       }
    }
    
-   //fügt neuen Leistungsabschnitt hinzu // Verwaltung des Leistungsabschnittes?
+
+    /**
+     *     fügt neuen Leistungsabschnitt hinzu Verwaltung des Leistungsabschnittes?
+
+     * @param name
+     */
    public void Leistungsabschnitthinzufügen (String name){
        leistungsabschnittakt = new Leistungsabschnitt(name);
        ModelSaveLoad.speicherLeistungsabschnitt(leistungsabschnittakt);
        
    }
    
-   //fügt Fach zu Leistungsabschnitt hinzu
+
+    /**
+     *   fügt Fach zu Leistungsabschnitt hinzu
+
+     * @param name
+     */
    public void Fachhinzufügen (String name){
       leistungsabschnittakt.addFach(new Fach(name));
       ModelSaveLoad.speicherLeistungsabschnitt(leistungsabschnittakt);
    }
    
    
-   //Fügt Note zu gewähltem Fach im aktuellen Leistungsabschnitt hinzu
+
+    /**
+     *
+     * @param gewFachIndex
+     * @param note
+     * @param leistungsnachweisArt
+     * @param datum
+     * @param beschreibung
+     * 
+     *  Fügt Note zu gewähltem Fach im aktuellen Leistungsabschnitt hinzu
+     */
    public void Notehinzufügen (int gewFachIndex, int note, LeistungsnachweisArt leistungsnachweisArt, Date datum, String beschreibung){
        //leistungsabschnittakt.Fächer[Fach]();
        
@@ -59,31 +83,63 @@ public class Control {
        ModelSaveLoad.speicherLeistungsabschnitt(leistungsabschnittakt);
    }
    
-   // löscht Leistungsabschnitt
-   public void LeistungsabschnittLoeschen (Leistungsabschnitt zuloeschen){
-// Löschen-Methode im Model, oder Control?       
-   }
+
+    /**
+     *    löscht Leistungsabschnitt
+
+     * @param zuloeschen
+     */
+   public void LeistungsabschnittLoeschen (String zuloeschen){ //Vom Drop-Down aus der View
+       löscheLeistungsabschnitt(zuloeschen);
+    }
    
-   //löscht Fach
+
+    /**
+     *  löscht Fach
+
+     * @param zuloeschen
+     */
    public void Fachloeschen (Fach zuloeschen){
        leistungsabschnittakt.removeFach(zuloeschen);
        ModelSaveLoad.speicherLeistungsabschnitt(leistungsabschnittakt);
    }
    
    //löscht Fach
+
+    /**
+     *
+     * @param gewFachIndex
+     * @param zuloeschen
+     */
    public void Noteloeschen (int gewFachIndex, NotenElement zuloeschen){
        leistungsabschnittakt.getFächer().get(gewFachIndex).removeNote(zuloeschen);    
        ModelSaveLoad.speicherLeistungsabschnitt(leistungsabschnittakt);
    }
    
-   //löscht alte Version der Note und erstellt neue
+
+    /**
+     *
+     * @param gewFachIndex
+     * @param zubearbeiten
+     * @param note
+     * @param leistungsnachweisArt
+     * @param datum
+     * @param beschreibung
+     * 
+     * löscht alte Version der Note und erstellt neue
+
+     */
    public void Notebearbeiten(int gewFachIndex, NotenElement zubearbeiten, int note, LeistungsnachweisArt leistungsnachweisArt, Date datum, String beschreibung) {
        Noteloeschen (gewFachIndex, zubearbeiten);
        Notehinzufügen (gewFachIndex, note, leistungsnachweisArt, datum, beschreibung);
        ModelSaveLoad.speicherLeistungsabschnitt(leistungsabschnittakt);
    }
    
-   // Methoden um bestehende Informationen(Noten) aus dem Model abzurufen im Controller oder in der View?
+
+    /**
+     *    Methoden um bestehende Informationen(Noten) aus dem Model abzurufen im Controller oder in der View?
+
+     */
    
    public void prüfeEingabe(){
        // evtl. über View
