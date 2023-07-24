@@ -27,16 +27,20 @@ public class Control {
     public Leistungsabschnitt leistungsabschnittakt;
 
     /**
-     * MVC-Control Klasse: Konstroktor initialisiert View und Model
+     * MVC-Control Klasse: Konstruktor initialisiert View und Model
      */
    public Control () {
-     View view1=new Halbjahr(this); //Kon struktor der Klasse Halbjahr hat keine Variable für die Control, welches ist der Startbildschirm?
+      //Kon struktor der Klasse Halbjahr hat keine Variable für die Control, welches ist der Startbildschirm?
+      //Starbildschirm der View initialisieren:
+      Halbjahr view1=new Halbjahr();
       //aktuellen Leistungsabschnitt festlegen:
       if (ModelSaveLoad.getLeistungsabschnittFileNamen().length==0){
-          
           //sage Gui Leistungsabschnitt erstellen
           // else Zeige GUI verfügbare Leistungsabschnitte und lasse wählen
           leistungsabschnittakt=StandardSetup.leistungsabschnittSetup();
+      }else{
+          leistungsabschnittakt=ModelSaveLoad.ladeLeistungsabschnitt(ModelSaveLoad.getLeistungsabschnittFileNamen()[0]);
+          //vorerst kann nur ein Leistungsabschnitt gespeichert, welcher logischerweise auf Position 0 liegt 
       }
    }
    
@@ -136,14 +140,7 @@ public class Control {
    }
    
 
-    /**
-     *    Methoden um bestehende Informationen(Noten) aus dem Model abzurufen im Controller oder in der View?
-
-     */
-   
-   public void prüfeEingabe(){
-       // evtl. über View
-   }
+ 
    
        
     
