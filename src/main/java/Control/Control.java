@@ -139,9 +139,56 @@ public class Control {
        ModelSaveLoad.speicherLeistungsabschnitt(leistungsabschnittakt);
    }
    
-
- 
+   /**
+    * 
+    * @param fachindex
+    * @return fachname
+    * 
+    * stellt die Fachnamen für die Startseite bereit
+    */
+   public String getFachname(int fachindex){
+       return leistungsabschnittakt.getFächer().get(fachindex).getName();
+   }
    
+   /**
+    * 
+    * @param fachindex
+    * @return notenwerteschriftl
+    * 
+    * gibt eine Array aller schriftlichen Notenwerte eines gewählten fachindexes im aktuellen leistungsabschnitt zurück
+    */
+   public int[] getNotenwerteschriftl(int fachindex){
+       int[] notenwerteschriftl = new int[leistungsabschnittakt.getFächer().get(fachindex).getNoten().size()];
+       int y=0;
+       for (int i=0; i<notenwerteschriftl.length; i++){
+           if(leistungsabschnittakt.getFächer().get(fachindex).getNoten().get(i).notenArt().gewichtung()==2){
+               notenwerteschriftl[y]=leistungsabschnittakt.getFächer().get(fachindex).getNoten().get(i).note();
+               y=y+1;
+           }
+           
+       }
+       return notenwerteschriftl;
+   }
+   
+    /**
+    * 
+    * @param fachindex
+    * @return notenwertemündl
+    * 
+    * gibt eine Array aller mündlichen Notenwerte eines gewählten fachindexes im aktuellen Leistungsabschnitt zurück
+    */
+   public int[] getNotenwertemündl(int fachindex){
+       int[] notenwerteschriftl = new int[leistungsabschnittakt.getFächer().get(fachindex).getNoten().size()];
+       int y=0;
+       for (int i=0; i<notenwerteschriftl.length; i++){
+           if(leistungsabschnittakt.getFächer().get(fachindex).getNoten().get(i).notenArt().gewichtung()==1){
+               notenwerteschriftl[y]=leistungsabschnittakt.getFächer().get(fachindex).getNoten().get(i).note();
+               y=y+1;
+           }
+           
+       }
+       return notenwerteschriftl;
+   }  
        
     
 }
